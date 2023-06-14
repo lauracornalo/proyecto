@@ -65,15 +65,15 @@ jobs:
           heroku_app_name: "parcialingenieriadesoftwarelau" #Must be unique in Heroku
           heroku_email: "marianognlz23@gmail.com"
         
-    - name: Send Slack notification
-      uses: ravsamhq/notify-slack-action@v2
-      if: always()
-      with:
-        status: ${{ job.status }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        notification_title: "{workflow} has {status_message}"
-        message_format: "{emoji} {workflow} {status_message} in <{repo_url}|{repo}>"
-        footer: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
-        notify_when: "failure, success"
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Send Slack notification
+        uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          notification_title: "{workflow} has {status_message}"
+          message_format: "{emoji} {workflow} {status_message} in <{repo_url}|{repo}>"
+          footer: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>"
+          notify_when: "failure, success"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
